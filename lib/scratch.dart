@@ -88,20 +88,23 @@ class NotePad {
 
   void __addNotes(String nomMatiere) {
     final nbNotes = readInt('Combien de notes à renseigner ?');
-    for (var i = nbNotes; nbNotes > 0; i--) {
+    for (var i = nbNotes; i > 0; i--) {
       __addOneNoteToTable(nomMatiere);
     }
   }
 
   String __choixMatiere() {
     var i = 0;
+    // Display list
     for (final mat in Matieres.values) {
       print("${++i} : $mat");
     }
+
     var indexMatiere = 0;
+    // Choose from list
     do {
-      final indexMatiere = readInt("Matière ?");
-    } while (indexMatiere >= 1 && indexMatiere <= i);
+      indexMatiere = readInt("Matière ?") -1;
+    } while (indexMatiere < 0 && indexMatiere > i);
     return Matieres.values[indexMatiere];
   }
 }
